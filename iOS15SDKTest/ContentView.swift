@@ -11,7 +11,7 @@ struct ContentView: View {
     @StateObject var viewModel = ViewModel()
 
     var body: some View {
-        VStack {
+        NavigationView {
             ScrollView(.vertical, showsIndicators: false) {
                 LazyVStack {
                     ForEach(viewModel.images, id: \.id) { image in
@@ -24,12 +24,12 @@ struct ContentView: View {
                         } placeholder: {
                             ProgressView()
                         }
-                        .frame(minWidth: 0, minHeight: 400)
+                        .frame(maxWidth: .infinity, minHeight: 400)
                         .clipShape(RoundedRectangle(cornerRadius: 15))
-                        .padding(.horizontal, 20)
-                        .padding(.bottom, 10)
+                        .padding()
                     }
                 }
+                .navigationTitle("Photos")
             }
         }
         .task {

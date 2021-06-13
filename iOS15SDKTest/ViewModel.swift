@@ -17,8 +17,8 @@ final class ViewModel: ObservableObject {
     
     func fetchImages() async {
         let query: Parameters = [
-            "page": Int.random(in: 1...10),
-            "query": "girl",
+            "page": Int.random(in: 1...50),
+            "query": "woman",
             "orientation": "portrait"
         ]
         
