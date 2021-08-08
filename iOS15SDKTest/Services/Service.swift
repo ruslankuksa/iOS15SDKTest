@@ -24,7 +24,6 @@ struct Service {
         }
         
         let (data, response) = try await session.data(for: request)
-        debugPrint(response)
         guard (200...299).contains((response as? HTTPURLResponse)!.statusCode) else { throw ApiError() }
         
         let decoder = JSONDecoder()

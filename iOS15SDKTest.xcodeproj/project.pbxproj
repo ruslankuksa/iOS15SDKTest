@@ -42,6 +42,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E00ACE0267705B600EE8F6B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2E5CDDF426724B0B00F35C0C /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2E38AF87267D2CE000D6D3C8 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				2E5CDDFB26724B0C00F35C0C /* Persistence.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		2E38AF88267D2CEC00D6D3C8 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				2E5CDE0526724C3100F35C0C /* ViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		2E38AF89267D2CF800D6D3C8 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2EDB9C492675E97000479BE9 /* Service.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		2E4A8EC02675F76600A648E7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -70,11 +102,11 @@
 			isa = PBXGroup;
 			children = (
 				2E5CDDF226724B0B00F35C0C /* iOS15SDKTestApp.swift */,
-				2E5CDDF426724B0B00F35C0C /* ContentView.swift */,
-				2E5CDE0526724C3100F35C0C /* ViewModel.swift */,
-				2E5CDDFB26724B0C00F35C0C /* Persistence.swift */,
+				2E00ACE0267705B600EE8F6B /* Views */,
+				2E38AF88267D2CEC00D6D3C8 /* ViewModels */,
+				2E38AF87267D2CE000D6D3C8 /* Persistence */,
+				2E38AF89267D2CF800D6D3C8 /* Services */,
 				2E4A8EC02675F76600A648E7 /* Model */,
-				2EDB9C492675E97000479BE9 /* Service.swift */,
 				2E5CDDF626724B0C00F35C0C /* Assets.xcassets */,
 				2E5CDDFD26724B0C00F35C0C /* iOS15SDKTest.xcdatamodeld */,
 				2E5CDDF826724B0C00F35C0C /* Preview Content */,

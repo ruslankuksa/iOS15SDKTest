@@ -14,18 +14,18 @@ final class ViewModel: ObservableObject {
     
     @Published private(set) var images: [UnsplashImage] = []
     @Published var alert: AlertState?
+    @Published var searchText: String = ""
     
     func fetchImages() async {
         let query: Parameters = [
             "page": Int.random(in: 1...50),
-            "query": "woman",
+            "query": "dog",
             "orientation": "portrait"
         ]
         
         do {
             images = try await service.fetchImages(query)
         } catch {
-            debugPrint(error.localizedDescription)
             alert = AlertState(title: "Error", message: error.localizedDescription)
         }
     }

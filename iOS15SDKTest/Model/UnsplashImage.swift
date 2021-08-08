@@ -17,10 +17,8 @@ struct UnsplashResponse: Decodable {
     }
 }
 
-struct UnsplashImage: Decodable {
+struct UnsplashImage: Decodable, Identifiable {
     let id: String
     let urls: [String:String]
     let links: [String:String]
 }
-
-extension UnsplashImage: Identifiable {}
