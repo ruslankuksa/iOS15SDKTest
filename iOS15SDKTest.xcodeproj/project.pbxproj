@@ -29,6 +29,7 @@
 		2E5CDE0526724C3100F35C0C /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		2E5CDE0726724C6800F35C0C /* UnsplashImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashImage.swift; sourceTree = "<group>"; };
 		2EDB9C492675E97000479BE9 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		2EF3AAED26C05EF90017F243 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +102,7 @@
 		2E5CDDF126724B0B00F35C0C /* iOS15SDKTest */ = {
 			isa = PBXGroup;
 			children = (
+				2EF3AAED26C05EF90017F243 /* Info.plist */,
 				2E5CDDF226724B0B00F35C0C /* iOS15SDKTestApp.swift */,
 				2E00ACE0267705B600EE8F6B /* Views */,
 				2E38AF88267D2CEC00D6D3C8 /* ViewModels */,
@@ -332,6 +334,7 @@
 				DEVELOPMENT_TEAM = Q8896Y6GNQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iOS15SDKTest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -362,6 +365,7 @@
 				DEVELOPMENT_TEAM = Q8896Y6GNQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iOS15SDKTest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

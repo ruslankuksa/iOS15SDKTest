@@ -9,35 +9,62 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var viewModel = ViewModel()
-
+    
+    //let columns = [GridItem()]
+    
     var body: some View {
         NavigationView {
-            List {
-                ForEach(viewModel.images, id: \.id) { image in
-                    AsyncImage(url: URL(string: image.urls["small"]!)) { image in
-                        
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                        
-                    } placeholder: {
-                        ProgressView()
+            VStack {
+                List {
+                    ForEach(Array(zip(viewModel.images.indices, viewModel.images)), id: \.1.id) { index, image in
+                        AsyncImage(url: URL(string: image.urls["small"]!)) { image in
+                            
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                            
+                        } placeholder: {
+                            ProgressView()
+                        }
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 400, maxHeight: 400)
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                        .onAppear {
+                            Task {
+                                await viewModel.loadMoreImages(index)
+                            }
+                        }
                     }
-                    .frame(maxWidth: .infinity, minHeight: 400)
-                    .clipShape(RoundedRectangle(cornerRadius: 15))
+                    .listRowSeparator(.hidden)
                 }
-                .listRowSeparator(.hidden)
+                .listStyle(.plain)
             }
-            .listStyle(.plain)
-            .navigationTitle("Photos")
-        }
-        .task {
-            await viewModel.fetchImages()
-        }
-        .alert(item: $viewModel.alert) { alert in
-            Alert(title: Text(alert.title),
-                  message: Text(alert.message ?? ""),
-                  dismissButton: .cancel(Text("Okay")))
+            .navigationBarTitle("Photos", displayMode: .large)
+            .searchable(text: $viewModel.searchText)
+            .onChange(of: viewModel.searchText, perform: { newValue in
+                Task {
+                    await viewModel.loadImages()
+                }
+            })
+            .task {
+                await viewModel.loadImages()
+            }
+            .alert(item: $viewModel.alert) { alert in
+                Alert(title: Text(alert.title),
+                      message: Text(alert.message ?? ""),
+                      dismissButton: .cancel(Text("Okay")))
+            }
+            .toolbar {
+                ToolbarItem(id: UUID().uuidString,
+                            placement: .navigationBarTrailing,
+                            showsByDefault: true)
+                {
+                    Button(action: {}) {
+                        Image(systemName: "square.grid.2x2")
+                            .font(.system(size: 18, weight: .semibold))
+                            .foregroundColor(.primary)
+                    }
+                }
+            }
         }
     }
 }

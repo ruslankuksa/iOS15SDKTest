@@ -9,8 +9,10 @@ import Foundation
 
 typealias Parameters = [String:Any]
 
-struct ApiError: Error {
-    
+enum ApiError: Error {
+    case badRequest
+    case badResponse
+    case failedToDecode(Error)
 }
 
 struct Service {
@@ -20,18 +22,21 @@ struct Service {
     
     func fetchImages(_ query: Parameters) async throws -> [UnsplashImage] {
         guard let request = createRequest(query) else {
-            throw ApiError()
+            throw ApiError.badRequest
         }
         
         let (data, response) = try await session.data(for: request)
-        guard (200...299).contains((response as? HTTPURLResponse)!.statusCode) else { throw ApiError() }
-        
-        let decoder = JSONDecoder()
-        guard let response = try? decoder.decode(UnsplashResponse.self, from: data) else {
-            throw ApiError()
+        guard (200...299).contains((response as? HTTPURLResponse)!.statusCode) else { throw
+            ApiError.badResponse
         }
         
-        return response.results
+        let decoder = JSONDecoder()
+        do {
+            let json = try decoder.decode(UnsplashResponse.self, from: data)
+            return json.results
+        } catch {
+            throw ApiError.failedToDecode(error)
+        }
     }
     
     private func createRequest(_ query: Parameters) -> URLRequest? {

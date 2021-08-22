@@ -16,18 +16,40 @@ final class ViewModel: ObservableObject {
     @Published var alert: AlertState?
     @Published var searchText: String = ""
     
-    func fetchImages() async {
-        let query: Parameters = [
-            "page": Int.random(in: 1...50),
-            "query": "dog",
+    var currentPage: Int = 1
+    
+    private func fetchImages() async -> [UnsplashImage] {
+        
+        let fetchParameters: Parameters = [
+            "page": currentPage,
+            "query": searchText.isEmpty ? "random" : searchText,
             "orientation": "portrait"
         ]
         
         do {
-            images = try await service.fetchImages(query)
+            let images = try await service.fetchImages(fetchParameters)
+            return images
         } catch {
-            alert = AlertState(title: "Error", message: error.localizedDescription)
+            debugPrint(error)
         }
+        
+        return []
+    }
+    
+    func loadImages() async {
+        currentPage = 1
+        let images = await fetchImages()
+        self.images = images
+    }
+    
+    func loadMoreImages(_ index: Int) async {
+        if !(index == images.count - 1) {
+            return
+        }
+        
+        currentPage += 1
+        let newImages = await fetchImages()
+        self.images.append(contentsOf: newImages)
     }
 }
 
