@@ -31,12 +31,18 @@ struct Service {
         }
         
         let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        
         do {
             let json = try decoder.decode(UnsplashResponse.self, from: data)
             return json.results
         } catch {
             throw ApiError.failedToDecode(error)
         }
+    }
+    
+    func downloadImage(imageId: String) {
+        
     }
     
     private func createRequest(_ query: Parameters) -> URLRequest? {

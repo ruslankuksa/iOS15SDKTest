@@ -42,14 +42,18 @@ final class ViewModel: ObservableObject {
         self.images = images
     }
     
-    func loadMoreImages(_ index: Int) async {
-        if !(index == images.count - 1) {
+    func loadMoreImages(_ image: UnsplashImage) async {
+        if !(image == images.last) {
             return
         }
         
         currentPage += 1
         let newImages = await fetchImages()
         self.images.append(contentsOf: newImages)
+    }
+    
+    func downloadImage(_ image: UnsplashImage) {
+        
     }
 }
 

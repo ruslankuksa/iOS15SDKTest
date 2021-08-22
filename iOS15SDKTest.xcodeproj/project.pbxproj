@@ -15,6 +15,8 @@
 		2E5CDDFF26724B0C00F35C0C /* iOS15SDKTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2E5CDDFD26724B0C00F35C0C /* iOS15SDKTest.xcdatamodeld */; };
 		2E5CDE0626724C3100F35C0C /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5CDE0526724C3100F35C0C /* ViewModel.swift */; };
 		2E5CDE0826724C6800F35C0C /* UnsplashImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5CDE0726724C6800F35C0C /* UnsplashImage.swift */; };
+		2E60694A26D21A3200F9BC44 /* PictureCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E60694926D21A3200F9BC44 /* PictureCardView.swift */; };
+		2E60695026D267A000F9BC44 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E60694F26D267A000F9BC44 /* Helper.swift */; };
 		2EDB9C4A2675E97000479BE9 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB9C492675E97000479BE9 /* Service.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +30,8 @@
 		2E5CDDFE26724B0C00F35C0C /* iOS15SDKTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iOS15SDKTest.xcdatamodel; sourceTree = "<group>"; };
 		2E5CDE0526724C3100F35C0C /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		2E5CDE0726724C6800F35C0C /* UnsplashImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashImage.swift; sourceTree = "<group>"; };
+		2E60694926D21A3200F9BC44 /* PictureCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureCardView.swift; sourceTree = "<group>"; };
+		2E60694F26D267A000F9BC44 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		2EDB9C492675E97000479BE9 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		2EF3AAED26C05EF90017F243 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -47,6 +51,7 @@
 			isa = PBXGroup;
 			children = (
 				2E5CDDF426724B0B00F35C0C /* ContentView.swift */,
+				2E60694926D21A3200F9BC44 /* PictureCardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -104,6 +109,7 @@
 			children = (
 				2EF3AAED26C05EF90017F243 /* Info.plist */,
 				2E5CDDF226724B0B00F35C0C /* iOS15SDKTestApp.swift */,
+				2E60694C26D24DB100F9BC44 /* Helpers */,
 				2E00ACE0267705B600EE8F6B /* Views */,
 				2E38AF88267D2CEC00D6D3C8 /* ViewModels */,
 				2E38AF87267D2CE000D6D3C8 /* Persistence */,
@@ -122,6 +128,14 @@
 				2E5CDDF926724B0C00F35C0C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2E60694C26D24DB100F9BC44 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2E60694F26D267A000F9BC44 /* Helper.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,9 +209,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E5CDE0626724C3100F35C0C /* ViewModel.swift in Sources */,
+				2E60694A26D21A3200F9BC44 /* PictureCardView.swift in Sources */,
 				2EDB9C4A2675E97000479BE9 /* Service.swift in Sources */,
 				2E5CDDFF26724B0C00F35C0C /* iOS15SDKTest.xcdatamodeld in Sources */,
 				2E5CDDFC26724B0C00F35C0C /* Persistence.swift in Sources */,
+				2E60695026D267A000F9BC44 /* Helper.swift in Sources */,
 				2E5CDE0826724C6800F35C0C /* UnsplashImage.swift in Sources */,
 				2E5CDDF526724B0B00F35C0C /* ContentView.swift in Sources */,
 				2E5CDDF326724B0B00F35C0C /* iOS15SDKTestApp.swift in Sources */,

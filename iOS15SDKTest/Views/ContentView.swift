@@ -16,23 +16,18 @@ struct ContentView: View {
         NavigationView {
             VStack {
                 List {
-                    ForEach(Array(zip(viewModel.images.indices, viewModel.images)), id: \.1.id) { index, image in
-                        AsyncImage(url: URL(string: image.urls["small"]!)) { image in
-                            
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                            
-                        } placeholder: {
-                            ProgressView()
-                        }
-                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 400, maxHeight: 400)
-                        .clipShape(RoundedRectangle(cornerRadius: 15))
-                        .onAppear {
-                            Task {
-                                await viewModel.loadMoreImages(index)
+                    ForEach(viewModel.images, id: \.id) { image in
+                        PictureCardView(
+                            imageURL: URL(string: image.urls["small"]!)!,
+                            onDownload: {
+                                
                             }
-                        }
+                        )
+                            .onAppear {
+                                Task {
+                                    await viewModel.loadMoreImages(image)
+                                }
+                            }
                     }
                     .listRowSeparator(.hidden)
                 }

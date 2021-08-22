@@ -7,17 +7,12 @@
 
 import Foundation
 
-struct UnsplashResponse: Decodable {
+struct UnsplashResponse: Decodable, Equatable {
     let totalPages: Int
     let results: [UnsplashImage]
-    
-    private enum CodingKeys: String, CodingKey {
-        case totalPages = "total_pages"
-        case results
-    }
 }
 
-struct UnsplashImage: Decodable, Identifiable {
+struct UnsplashImage: Decodable, Identifiable, Equatable {
     let id: String
     let urls: [String:String]
     let links: [String:String]
