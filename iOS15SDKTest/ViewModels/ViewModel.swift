@@ -26,9 +26,15 @@ final class ViewModel: ObservableObject {
             "orientation": "portrait"
         ]
         
+        let request = NetworkRequest(
+            method: .get,
+            endpoint: .searchPhotos,
+            parameters: fetchParameters
+        )
+        
         do {
-            let images = try await service.fetchImages(fetchParameters)
-            return images
+            let response = try await service.fetchImages(request)
+            return response.results
         } catch {
             debugPrint(error)
         }
@@ -52,8 +58,32 @@ final class ViewModel: ObservableObject {
         self.images.append(contentsOf: newImages)
     }
     
-    func downloadImage(_ image: UnsplashImage) {
+    func downloadImage(_ image: UnsplashImage) async {
+        guard let link = image.links["download"],
+              let imageURL = URL(string: link) else {
+            debugPrint("No donwload URL")
+            return
+        }
         
+        do {
+            async let imageData = Data(contentsOf: imageURL)
+            saveToTempDirectory(try await imageData)
+            debugPrint("Image downloaded")
+        } catch {
+            debugPrint("Donwload image error: \(error)")
+        }
+    }
+    
+    func saveToTempDirectory(_ data: Data) {
+        let tempPath = NSTemporaryDirectory()
+        let tempUrl = URL(fileURLWithPath: tempPath, isDirectory: true)
+        let targetUrl = tempUrl.appendingPathComponent("\(Date().timeIntervalSince1970)", conformingTo: .jpeg)
+        
+        do {
+            try data.write(to: targetUrl, options: .atomic)
+        } catch {
+            debugPrint("Failed to save image in temp directory")
+        }
     }
 }
 

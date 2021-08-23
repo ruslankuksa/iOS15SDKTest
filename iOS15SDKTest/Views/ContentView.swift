@@ -20,7 +20,9 @@ struct ContentView: View {
                         PictureCardView(
                             imageURL: URL(string: image.urls["small"]!)!,
                             onDownload: {
-                                
+                                Task {
+                                    await viewModel.downloadImage(image)
+                                }
                             }
                         )
                             .onAppear {

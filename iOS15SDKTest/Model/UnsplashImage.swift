@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct UnsplashResponse: Decodable, Equatable {
+struct UnsplashResponse: Codable, Equatable {
     let totalPages: Int
     let results: [UnsplashImage]
 }
 
-struct UnsplashImage: Decodable, Identifiable, Equatable {
+struct UnsplashImage: Codable, Identifiable, Equatable {
     let id: String
     let urls: [String:String]
     let links: [String:String]

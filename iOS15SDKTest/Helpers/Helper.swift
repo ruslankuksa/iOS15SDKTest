@@ -8,3 +8,5 @@
 import Foundation
 
 typealias Action = () -> Void
+typealias Parameters = [String:Any]
+typealias Headers = [String:String]
