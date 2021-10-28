@@ -10,13 +10,17 @@ import Foundation
 @MainActor
 final class ViewModel: ObservableObject {
     
-    private let service = Service()
+    private let service: NetworkService
     
     @Published private(set) var images: [UnsplashImage] = []
     @Published var alert: AlertState?
     @Published var searchText: String = ""
     
     var currentPage: Int = 1
+    
+    init(service: NetworkService = NetworkManager()) {
+        self.service = service
+    }
     
     private func fetchImages() async -> [UnsplashImage] {
         
@@ -49,7 +53,7 @@ final class ViewModel: ObservableObject {
     }
     
     func loadMoreImages(_ image: UnsplashImage) async {
-        if !(image == images.last) {
+        if image != images.last {
             return
         }
         
@@ -61,7 +65,7 @@ final class ViewModel: ObservableObject {
     func downloadImage(_ image: UnsplashImage) async {
         guard let link = image.links["download"],
               let imageURL = URL(string: link) else {
-            debugPrint("No donwload URL")
+            debugPrint("No download URL")
             return
         }
         

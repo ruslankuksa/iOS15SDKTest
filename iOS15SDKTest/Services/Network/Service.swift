@@ -14,11 +14,11 @@ enum ApiError: Error {
     case unknownError
 }
 
-protocol ServiceProtocol: Executor {
+protocol NetworkService: Executor {
     func fetchImages(_ request: NetworkRequest) async throws -> UnsplashResponse
 }
 
-struct Service: ServiceProtocol {
+struct NetworkManager: NetworkService {
     
     func fetchImages(_ request: NetworkRequest) async throws -> UnsplashResponse {
         return try await execute(request)
